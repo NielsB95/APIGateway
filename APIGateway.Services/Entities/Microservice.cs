@@ -5,6 +5,20 @@ namespace APIGateway.Services.Entities
 {
     public class Microservice
     {
+        /// <summary>
+        /// The identifier of the microservice.
+        /// </summary>
+        private Guid id;
+        public Guid ID
+        {
+            get
+            {
+                if (this.id == default(Guid))
+                    this.id = new Guid();
+                return this.id;
+            }
+        }
+
         public string Name { get; set; }
         public Uri DomainName { get; set; }
         public int Port { get; set; }
