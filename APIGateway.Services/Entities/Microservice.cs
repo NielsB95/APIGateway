@@ -19,6 +19,7 @@ namespace APIGateway.Services.Entities
         public string Name { get; set; }
         public Uri DomainName { get; set; }
         public int Port { get; set; }
+        public string Version { get; set; }
 
         public IList<Endpoint> Endpoints { get; set; }
     }
