@@ -4,6 +4,8 @@ namespace APIGateway.Services.ServiceRegistration
 {
     public interface IMicroserviceManager
     {
-        void Register(Microservice service);
+        bool Register(Microservice service);
+
+        bool Validate(Microservice service);
     }
 }
