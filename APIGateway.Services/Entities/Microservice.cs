@@ -5,9 +5,6 @@ namespace APIGateway.Services.Entities
 {
     public class Microservice
     {
-        /// <summary>
-        /// The identifier of the microservice.
-        /// </summary>
         private Guid id;
         public Guid ID
         {
