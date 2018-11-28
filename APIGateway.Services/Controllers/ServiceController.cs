@@ -1,5 +1,4 @@
-﻿using System;
-using APIGateway.Services.Entities;
+﻿using APIGateway.Services.Entities;
 using APIGateway.Services.ServiceRegistration;
 using Microsoft.AspNetCore.Mvc;
 
