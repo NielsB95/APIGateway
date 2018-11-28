@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace APIGateway.Services.Controllers
 {
     [ApiController]
-    [Route("Service"))]
+    [Route("Service")]
     public class ServiceController : ControllerBase
     {
         private IMicroserviceManager serviceManager;
