@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using APIGateway.Services.Entities.Base.Validation.Attributes;
 
 namespace APIGateway.Services.Entities
 {
@@ -17,11 +18,18 @@ namespace APIGateway.Services.Entities
             }
         }
 
+        [Required]
         public string Name { get; set; }
+
+        [Required]
         public Uri DomainName { get; set; }
+
+        [Required]
         public int Port { get; set; }
+
         public string Version { get; set; }
 
+        [ListNotEmptyOrNull]
         public IList<Endpoint> Endpoints { get; set; }
     }
 }
