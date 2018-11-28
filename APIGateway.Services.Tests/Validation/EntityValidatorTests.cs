@@ -8,13 +8,7 @@ namespace APIGateway.Services.Tests.Validation
     [TestClass]
     public class EntityValidatorTests
     {
-        [TestMethod]
-        public void ClassWithoutFieldsValidationTest()
-        {
-            var classWithoutFields = new EmptyClass();
-            Assert.IsTrue(EntityValidator.Validate(classWithoutFields));
-        }
-
+        #region Helper functions
         [TestMethod]
         public void GetValidatablePropertiesTest()
         {
@@ -60,6 +54,16 @@ namespace APIGateway.Services.Tests.Validation
             var validationAttributes = EntityValidator.GetValidationAttributes(idProp).ToList();
             Assert.AreEqual(0, validationAttributes.Count);
         }
+        #endregion
+
+        #region Object validation
+        [TestMethod]
+        public void ClassWithoutFieldsValidationTest()
+        {
+            var classWithoutFields = new EmptyClass();
+            Assert.IsTrue(EntityValidator.Validate(classWithoutFields));
+        }
+
 
         [TestMethod]
         public void ValidatePerson()
@@ -108,5 +112,6 @@ namespace APIGateway.Services.Tests.Validation
 
             Assert.IsFalse(entity.Validate());
         }
+        #endregion
     }
 }
