@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using APIGateway.Services.Entities.Base;
 
 namespace APIGateway.Services.Tests.Validation.TestClasses

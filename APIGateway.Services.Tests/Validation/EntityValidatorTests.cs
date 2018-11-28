@@ -96,5 +96,17 @@ namespace APIGateway.Services.Tests.Validation
 
             Assert.IsFalse(entity.Validate());
         }
+
+        [TestMethod]
+        public void ValidatePersonWithoutName()
+        {
+            var entity = new Person()
+            {
+                Name = null,
+                Age = 23
+            };
+
+            Assert.IsFalse(entity.Validate());
+        }
     }
 }

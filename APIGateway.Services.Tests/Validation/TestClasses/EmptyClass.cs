@@ -1,6 +1,4 @@
-﻿using System;
-using APIGateway.Services.Entities.Base;
-using APIGateway.Services.Entities.Base.Validation;
+﻿using APIGateway.Services.Entities.Base;
 
 namespace APIGateway.Services.Tests.Validation.TestClasses
 {
