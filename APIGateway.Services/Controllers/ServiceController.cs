@@ -20,9 +20,8 @@ namespace APIGateway.Services.Controllers
         public ActionResult<IList<Microservice>> Add(Microservice service)
         {
             var result = this.serviceManager.Register(service);
-
             if (result)
-                return Ok();
+                return Ok(service);
             else
                 return BadRequest();
         }
