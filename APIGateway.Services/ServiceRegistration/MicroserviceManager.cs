@@ -23,8 +23,8 @@ namespace APIGateway.Services.ServiceRegistration
         /// <param name="service">Service.</param>
         public bool Register(Microservice service)
         {
-            var validationResult = service.Validate();
-            if (!validationResult)
+            var isValid = service.Validate();
+            if (!isValid)
                 return false;
 
             // Add the microservice.
@@ -32,10 +32,7 @@ namespace APIGateway.Services.ServiceRegistration
 
             // Add all the endpoints exposed by this service.
             foreach (var endpoint in service.Endpoints)
-                if (this.endpoints.TryAdd(endpoint.Signature, service.ID))
-                    Console.WriteLine("Added endpoint");
-                else
-                    Console.WriteLine("Endpoint exists already");
+                this.endpoints.TryAdd(endpoint.Signature, service.ID);
 
             // Succesfull if we've made it this far.
             return true;
