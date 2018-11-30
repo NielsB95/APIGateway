@@ -1,11 +1,11 @@
-﻿using APIGateway.Services.Entities;
+﻿using System.Collections.Generic;
+using APIGateway.Services.Entities;
 
 namespace APIGateway.Services.ServiceRegistration
 {
     public interface IMicroserviceManager
     {
         bool Register(Microservice service);
-
-        bool Validate(Microservice service);
+        IList<Microservice> RegisteredServices();
     }
 }

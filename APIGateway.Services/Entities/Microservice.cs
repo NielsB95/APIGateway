@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using APIGateway.Services.Entities.Base;
 using APIGateway.Services.Entities.Base.Validation.Attributes;
 
 namespace APIGateway.Services.Entities
 {
-    public class Microservice
+    public class Microservice : BaseEntity
     {
-        private Guid id;
+        private Guid? id;
         public Guid ID
         {
             get
             {
-                if (this.id == default(Guid))
-                    this.id = new Guid();
-                return this.id;
+                if (!this.id.HasValue)
+                    this.id = Guid.NewGuid();
+                return this.id.Value;
             }
         }
 
@@ -29,7 +30,7 @@ namespace APIGateway.Services.Entities
 
         public string Version { get; set; }
 
-        [ListNotEmptyOrNull]
+        [NotNullOrEmpty]
         public IList<Endpoint> Endpoints { get; set; }
     }
 }

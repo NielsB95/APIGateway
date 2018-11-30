@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Concurrent;
 using APIGateway.Services.Entities;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace APIGateway.Services.ServiceRegistration
 {
@@ -22,7 +23,7 @@ namespace APIGateway.Services.ServiceRegistration
         /// <param name="service">Service.</param>
         public bool Register(Microservice service)
         {
-            var validationResult = this.Validate(service);
+            var validationResult = service.Validate();
             if (!validationResult)
                 return false;
 
@@ -40,20 +41,9 @@ namespace APIGateway.Services.ServiceRegistration
             return true;
         }
 
-        /// <summary>
-        /// Validate the specified service.
-        /// </summary>
-        /// <returns>The validate.</returns>
-        /// <param name="service">Service.</param>
-        public bool Validate(Microservice service)
+        public IList<Microservice> RegisteredServices()
         {
-            if (service == null)
-                return false;
-
-            if (service.Endpoints == null || !service.Endpoints.Any())
-                return false;
-
-            return true;
+            return this.microservices.Select(x => x.Value).ToList();
         }
     }
 }

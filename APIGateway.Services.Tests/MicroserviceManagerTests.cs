@@ -17,14 +17,6 @@ namespace APIGateway.Services.Tests
         }
 
         [TestMethod]
-        public void MicroserviceNullValidationTest()
-        {
-            Microservice service = null;
-            var result = microserviceManager.Validate(service);
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod]
         public void MicroserviceValidationTest()
         {
             var service = new Microservice()
@@ -32,7 +24,7 @@ namespace APIGateway.Services.Tests
                 Endpoints = null
             };
 
-            var result = microserviceManager.Validate(service);
+            var result = service.Validate();
             Assert.IsFalse(result);
         }
 
@@ -44,7 +36,7 @@ namespace APIGateway.Services.Tests
                 Endpoints = new List<Endpoint>()
             };
 
-            var result = microserviceManager.Validate(service);
+            var result = service.Validate();
             Assert.IsFalse(result);
         }
     }

@@ -1,4 +1,5 @@
-﻿using APIGateway.Services.Entities;
+﻿using System.Collections.Generic;
+using APIGateway.Services.Entities;
 using APIGateway.Services.ServiceRegistration;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace APIGateway.Services.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Microservice service)
+        public ActionResult<IList<Microservice>> Add(Microservice service)
         {
             var result = this.serviceManager.Register(service);
 
@@ -24,6 +25,16 @@ namespace APIGateway.Services.Controllers
                 return Ok();
             else
                 return BadRequest();
+        }
+
+        /// <summary>
+        /// Get this instance.
+        /// </summary>
+        /// <returns>The get.</returns>
+        [HttpGet]
+        public ActionResult<IList<Microservice>> GetRegisteredServices()
+        {
+            return Ok(this.serviceManager.RegisteredServices());
         }
     }
 }
