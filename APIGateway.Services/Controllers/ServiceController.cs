@@ -33,7 +33,8 @@ namespace APIGateway.Services.Controllers
         [HttpGet]
         public ActionResult<IList<Microservice>> GetRegisteredServices()
         {
-            return Ok(this.serviceManager.RegisteredServices());
+            var services = this.serviceManager.RegisteredServices();
+            return Ok(services);
         }
     }
 }

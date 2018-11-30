@@ -32,7 +32,7 @@ namespace APIGateway.Services.ServiceRegistration
 
             // Add all the endpoints exposed by this service.
             foreach (var endpoint in service.Endpoints)
-                if (this.endpoints.TryAdd(endpoint.GetSignature(), service.ID))
+                if (this.endpoints.TryAdd(endpoint.Signature, service.ID))
                     Console.WriteLine("Added endpoint");
                 else
                     Console.WriteLine("Endpoint exists already");
