@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway.Services.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway.Queue", "APIGateway.Queue\APIGateway.Queue.csproj", "{5F189064-498E-41A1-9B2C-06DE82F4856A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway.Logging", "APIGateway.Logging\APIGateway.Logging.csproj", "{73C8AB32-08D9-43AB-A22C-67DC55906246}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,5 +33,9 @@ Global
 		{5F189064-498E-41A1-9B2C-06DE82F4856A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F189064-498E-41A1-9B2C-06DE82F4856A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F189064-498E-41A1-9B2C-06DE82F4856A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73C8AB32-08D9-43AB-A22C-67DC55906246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73C8AB32-08D9-43AB-A22C-67DC55906246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73C8AB32-08D9-43AB-A22C-67DC55906246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73C8AB32-08D9-43AB-A22C-67DC55906246}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
