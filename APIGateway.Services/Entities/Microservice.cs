@@ -23,7 +23,6 @@ namespace APIGateway.Services.Entities
         public string Name { get; set; }
 
         [Required]
-        [ValidUrl]
         public Uri DomainName { get; set; }
 
         [Required]

@@ -17,7 +17,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Validation\" />
-    <Folder Include="Validation\TestClasses\" />
     <Folder Include="Validation\Attributes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Validation\TestClasses\ClassWithoutFields.cs" />
+    <Compile Remove="Validation\TestClasses\ClassWithValidatableProperties.cs" />
   </ItemGroup>
 </Project>

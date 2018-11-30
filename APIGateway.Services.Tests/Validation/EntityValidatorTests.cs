@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using APIGateway.Services.Entities.Base;
 using APIGateway.Services.Entities.Base.Validation;
-using APIGateway.Services.Tests.Validation.TestClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace APIGateway.Services.Tests.Validation
@@ -8,54 +9,6 @@ namespace APIGateway.Services.Tests.Validation
     [TestClass]
     public class EntityValidatorTests
     {
-        #region Helper functions
-        [TestMethod]
-        public void GetValidatablePropertiesTest()
-        {
-            var classWithValidatableProps = new Person();
-            var properties = classWithValidatableProps.GetType().GetProperties();
-            var validatableProperties = EntityValidator.GetValidatableProperties(properties).ToList();
-
-            Assert.AreEqual(2, validatableProperties.Count);
-
-            var propertyNames = validatableProperties.Select(x => x.Name);
-            Assert.IsTrue(propertyNames.Contains("Name"));
-            Assert.IsTrue(propertyNames.Contains("Age"));
-        }
-
-        [TestMethod]
-        public void GetValidatablePropertiesOnEmptyClassTest()
-        {
-            var classWithoutFields = new EmptyClass();
-            var properties = classWithoutFields.GetType().GetProperties();
-            var validatableProperties = EntityValidator.GetValidatableProperties(properties).ToList();
-
-            Assert.AreEqual(0, validatableProperties.Count);
-        }
-
-        [TestMethod]
-        public void GetValidationAttributesTest()
-        {
-            var classWithValidatableProps = new Person();
-            var properties = classWithValidatableProps.GetType().GetProperties();
-
-            var nameProp = properties.First(x => x.Name == "Name");
-            var validationAttributes = EntityValidator.GetValidationAttributes(nameProp).ToList();
-            Assert.AreEqual(2, validationAttributes.Count);
-        }
-
-        [TestMethod]
-        public void GetValidationAttributesFromPropertyWithoutAttributesTest()
-        {
-            var classWithValidatableProps = new Person();
-            var properties = classWithValidatableProps.GetType().GetProperties();
-
-            var idProp = properties.First(x => x.Name == "ID");
-            var validationAttributes = EntityValidator.GetValidationAttributes(idProp).ToList();
-            Assert.AreEqual(0, validationAttributes.Count);
-        }
-        #endregion
-
         #region Object validation
         [TestMethod]
         public void ClassWithoutFieldsValidationTest()
@@ -82,7 +35,7 @@ namespace APIGateway.Services.Tests.Validation
         {
             var entity = new Person()
             {
-                Name = "Johnnnnnnnnnnn",
+                Name = "Johnnnnnnnnnnnnnnnnnnnnn",
                 Age = 23
             };
 
@@ -111,6 +64,25 @@ namespace APIGateway.Services.Tests.Validation
             };
 
             Assert.IsFalse(entity.Validate());
+        }
+        #endregion
+
+        #region Helper classes
+        internal class Person : BaseEntity
+        {
+            public int ID { get; private set; }
+
+            [Required]
+            [MaxLength(10)]
+            public string Name { get; set; }
+
+            [Range(0, 150)]
+            public int Age { get; set; }
+        }
+
+        internal class EmptyClass : BaseEntity
+        {
+
         }
         #endregion
     }
