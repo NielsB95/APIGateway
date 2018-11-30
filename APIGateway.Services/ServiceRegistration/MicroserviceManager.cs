@@ -17,6 +17,11 @@ namespace APIGateway.Services.ServiceRegistration
             this.endpoints = new ConcurrentDictionary<string, Guid>();
         }
 
+        public IList<Endpoint> GetEndpoints(Guid serviceID)
+        {
+            return microservices[serviceID].Endpoints;
+        }
+
         /// <summary>
         /// Register the specified service and all its endpoints.
         /// </summary>
@@ -38,6 +43,10 @@ namespace APIGateway.Services.ServiceRegistration
             return true;
         }
 
+        /// <summary>
+        /// Returns a list the registered services.
+        /// </summary>
+        /// <returns>The services.</returns>
         public IList<Microservice> RegisteredServices()
         {
             return this.microservices.Select(x => x.Value).ToList();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using APIGateway.Services.Entities;
 
 namespace APIGateway.Services.ServiceRegistration
@@ -7,5 +8,6 @@ namespace APIGateway.Services.ServiceRegistration
     {
         bool Register(Microservice service);
         IList<Microservice> RegisteredServices();
+        IList<Endpoint> GetEndpoints(Guid serviceID);
     }
 }
