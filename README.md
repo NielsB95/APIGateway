@@ -1,2 +1,2 @@
 # APIGateway
-An api gateway written in C#
+An api gateway written in C# for microservice.
