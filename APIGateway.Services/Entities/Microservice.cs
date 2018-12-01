@@ -28,8 +28,7 @@ namespace APIGateway.Services.Entities
         [ValidUrl]
         public string DomainName { get; set; }
 
-        [Required]
-        public int Port { get; set; }
+        public int? Port { get; set; }
 
         public string Version { get; set; }
 
@@ -40,7 +39,10 @@ namespace APIGateway.Services.Entities
         {
             get
             {
-                return string.Format("{0}:{1}", DomainName, Port);
+                if (Port.HasValue)
+                    return string.Format("{0}:{1}", DomainName, Port);
+                else
+                    return DomainName;
             }
         }
     }

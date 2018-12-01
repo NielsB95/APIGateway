@@ -37,7 +37,7 @@ namespace APIGateway.Queue
             if (microservice != null)
             {
                 // Create a ServiceRequest
-                var serviceRequest = new ServiceRequest(context, microservice.DomainName, microservice.Port);
+                var serviceRequest = new ServiceRequest(context, microservice);
 
                 // Add to queue
                 //this.queueManager.Enqueue(serviceRequest);
