@@ -18,9 +18,6 @@ namespace APIGateway.Logging
         public async Task Invoke(HttpContext context)
         {
             var request = context.Request;
-
-            // Do something before
-
             await next(context);
 
             // Write the request to a file.
