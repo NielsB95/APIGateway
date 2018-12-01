@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace APIGateway.Services.Entities
 {
@@ -10,6 +11,7 @@ namespace APIGateway.Services.Entities
         [Required]
         public string Pathname { get; set; }
 
+        [JsonIgnore]
         public string Signature
         {
             get

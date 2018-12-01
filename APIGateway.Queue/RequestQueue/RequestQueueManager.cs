@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using APIGateway.Queue.Entities;
 
 namespace APIGateway.Queue.RequestQueue
@@ -25,7 +23,12 @@ namespace APIGateway.Queue.RequestQueue
 
         public void Enqueue(ServiceRequest request)
         {
+            // Add the request to the queue.
             this.requestQueue.Enqueue(request);
+
+            // Notify the workers that there is a new request for
+            // them to process.
+            RequestReceived(this, null);
         }
 
         private void InitializeWorkers()
@@ -36,8 +39,7 @@ namespace APIGateway.Queue.RequestQueue
 
                 // Subscribe to the RequestReceivedEvent.
                 this.RequestReceived += worker.OnRequestReceived;
-
-                workers.Add(worker);
+                this.workers.Add(worker);
             }
         }
 

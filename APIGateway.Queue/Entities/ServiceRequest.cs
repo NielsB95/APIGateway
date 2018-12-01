@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Threading.Tasks;
 using APIGateway.Queue.Util;
 using Microsoft.AspNetCore.Http;
 
@@ -9,17 +10,15 @@ namespace APIGateway.Queue.Entities
         private HttpContext context;
         private string microserviceAddress;
         private int microservicePort;
-        private RequestDelegate respond;
 
-        public ServiceRequest(HttpContext context, string microserviceAddress, int microservicePort, RequestDelegate respond)
+        public ServiceRequest(HttpContext context, string microserviceAddress, int microservicePort)
         {
             this.context = context;
             this.microserviceAddress = microserviceAddress;
             this.microservicePort = microservicePort;
-            this.respond = respond;
         }
 
-        public async void Process()
+        public async Task Process()
         {
             string newUrl = this.ComposeNewUrl();
             HttpResponseMessage response = null;
@@ -34,9 +33,7 @@ namespace APIGateway.Queue.Entities
             }
 
             // Copy the response from the proxy request.
-            context.Response.Body = await response.Content.ReadAsStreamAsync();
-
-            await respond(context);
+            await response.Content.CopyToAsync(context.Response.Body);
         }
 
         private string ComposeNewUrl()

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using APIGateway.Services.Entities.Base;
 using APIGateway.Services.Entities.Base.Validation.Attributes;
 
 namespace APIGateway.Services.Entities
 {
+    [DebuggerDisplay("{Name}")]
     public class Microservice : BaseEntity
     {
         private Guid? id;
@@ -23,7 +25,8 @@ namespace APIGateway.Services.Entities
         public string Name { get; set; }
 
         [Required]
-        public Uri DomainName { get; set; }
+        [ValidUrl]
+        public string DomainName { get; set; }
 
         [Required]
         public int Port { get; set; }
@@ -32,5 +35,13 @@ namespace APIGateway.Services.Entities
 
         [NotNullOrEmpty]
         public IList<Endpoint> Endpoints { get; set; }
+
+        public string Url
+        {
+            get
+            {
+                return string.Format("{0}:{1}", DomainName, Port);
+            }
+        }
     }
 }

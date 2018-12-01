@@ -9,5 +9,6 @@ namespace APIGateway.Services.ServiceRegistration
         bool Register(Microservice service);
         IList<Microservice> RegisteredServices();
         IList<Endpoint> GetEndpoints(Guid serviceID);
+        Microservice Match(string method, string path);
     }
 }

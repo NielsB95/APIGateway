@@ -20,24 +20,24 @@ namespace APIGateway.Queue.RequestQueue
 
         public virtual void OnRequestReceived(object sender, EventArgs e)
         {
-            // Return if the worker is Busy.
+            // Return if the worker is Busy (aka still waiting for a response).
             if (this.State == WorkerState.Busy)
                 return;
 
             // Keep working while there is somehting on the queue.
-            while (State != WorkerState.Idle)
+            while (this.State != WorkerState.Idle)
                 this.Work();
         }
 
-        private void Work()
+        private async void Work()
         {
-            // Get the request from the queue.
+            // Get a new request from the queue.
             var request = requestProvider.ProvideRequest();
 
             if (request != null)
             {
                 State = WorkerState.Busy;
-                request.Process();
+                await request.Process();
             }
             else
             {

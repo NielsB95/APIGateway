@@ -51,5 +51,35 @@ namespace APIGateway.Services.ServiceRegistration
         {
             return this.microservices.Select(x => x.Value).ToList();
         }
+
+        /// <summary>
+        /// Try to match the specified path on a Microservice.
+        /// </summary>
+        /// <returns>The match.</returns>
+        /// <param name="path">Path.</param>
+        public Microservice Match(string method, string path)
+        {
+            // Check if the first char is a slash. Remove when true.
+            if (path.First().Equals('/'))
+                path = string.Concat(path.SkipWhile(x => x.Equals('/')));
+
+            // Make sure the method is written in UPPERCASE.
+            method = method.ToUpper();
+
+            var endpointKey = string.Format("{0}-{1}", method, path);
+
+            // Get the microservice guid based on the registered paths.
+            this.endpoints.TryGetValue(endpointKey, out Guid guid);
+
+            // Return if no matching service was found.
+            if (guid.Equals(Guid.Empty))
+                return null;
+
+            // Get service by Guid
+            this.microservices.TryGetValue(guid, out Microservice service);
+
+            // and return it.
+            return service;
+        }
     }
 }
