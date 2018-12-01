@@ -26,10 +26,14 @@ namespace APIGateway.Queue.Entities
             switch (this.context.Request.Method)
             {
                 case "GET":
-                    response = await RequestProcessor.GET(newUrl, this.context);
+                    response = await RequestProcessor.GET(newUrl, context);
+                    break;
+                case "POST":
+                    response = await RequestProcessor.POST(newUrl, context);
                     break;
             }
 
+            // Copy the response from the proxy request.
             context.Response.Body = await response.Content.ReadAsStreamAsync();
 
             await respond(context);
