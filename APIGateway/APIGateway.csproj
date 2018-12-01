@@ -11,5 +11,7 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\APIGateway.Services\APIGateway.Services.csproj" />
+        <ProjectReference Include="..\APIGateway.Logging\APIGateway.Logging.csproj" />
+        <ProjectReference Include="..\APIGateway.Queue\APIGateway.Queue.csproj" />
     </ItemGroup>
 </Project>

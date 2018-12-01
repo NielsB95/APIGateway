@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using APIGateway.Logging;
 using APIGateway.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,7 @@ namespace APIGateway
                 app.UseHsts();
             }
 
+            app.AddRequestLogging();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

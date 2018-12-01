@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace APIGateway.Logging
@@ -9,6 +10,12 @@ namespace APIGateway.Logging
         {
 
             return services;
+        }
+
+        public static IApplicationBuilder AddRequestLogging(
+    this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<RequestLoggingMiddleware>();
         }
     }
 }
