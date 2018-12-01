@@ -9,5 +9,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="RequestQueue\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Util\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Util\HttpContextExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\APIGateway.Services\APIGateway.Services.csproj" />
   </ItemGroup>
 </Project>
