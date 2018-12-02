@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 namespace APIGateway.Services.Entities
 {
+    [DebuggerDisplay("{GatewayUrl} -> {ServiceUrl}")]
     public class Endpoint
     {
         [Required]
