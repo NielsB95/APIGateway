@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using APIGateway.Services.Entities.Base;
 using APIGateway.Services.Entities.Base.Validation.Attributes;
+using APIGateway.Services.Util;
+using Newtonsoft.Json;
 
 namespace APIGateway.Services.Entities
 {
@@ -32,10 +34,17 @@ namespace APIGateway.Services.Entities
 
         public string Version { get; set; }
 
+        /// <summary>
+        /// This property defines the prefix of the microservice that is
+        /// used for composing the exposed endpoint.
+        /// </summary>
+        /// <value>The prefix.</value>
+        public string Prefix { get; set; }
+
         [NotNullOrEmpty]
         public IList<Endpoint> Endpoints { get; set; }
 
-        public string Url
+        public string ServiceUrl
         {
             get
             {
@@ -43,6 +52,14 @@ namespace APIGateway.Services.Entities
                     return string.Format("{0}:{1}", DomainName, Port);
                 else
                     return DomainName;
+            }
+        }
+
+        public string GatewayBaseUrl
+        {
+            get
+            {
+                return UrlComposer.ComposeGatewayBaseUrl(this.Prefix);
             }
         }
     }

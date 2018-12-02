@@ -46,7 +46,7 @@ namespace APIGateway.Queue.Entities
         /// <returns>The URL.</returns>
         private string ComposeUrl()
         {
-            return this.microservice.Url;
+            return this.microservice.ServiceUrl;
         }
     }
 }

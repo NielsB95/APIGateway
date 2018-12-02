@@ -22,6 +22,11 @@ namespace APIGateway.Services.ServiceRegistration
             return microservices[serviceID].Endpoints;
         }
 
+        public IList<Endpoint> GetEndpoints()
+        {
+            return microservices.SelectMany(x => x.Value.Endpoints).ToList();
+        }
+
         /// <summary>
         /// Register the specified service and all its endpoints.
         /// </summary>
@@ -37,7 +42,10 @@ namespace APIGateway.Services.ServiceRegistration
 
             // Add all the endpoints exposed by this service.
             foreach (var endpoint in service.Endpoints)
+            {
+                endpoint.Microservice = service;
                 this.endpoints.TryAdd(endpoint.Signature, service.ID);
+            }
 
             // Succesfull if we've made it this far.
             return true;

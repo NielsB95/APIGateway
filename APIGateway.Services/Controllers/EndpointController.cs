@@ -17,10 +17,11 @@ namespace APIGateway.Services.Controllers
             this.microserviceManager = microserviceManager;
         }
 
-
         [HttpGet]
         public ActionResult<List<Endpoint>> GetEndpoints(Guid serviceID)
         {
+            if (serviceID.Equals(Guid.Empty))
+                return Ok(microserviceManager.GetEndpoints());
             return Ok(microserviceManager.GetEndpoints(serviceID));
         }
     }
