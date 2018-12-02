@@ -1,0 +1,10 @@
+version: 1
+jobs:
+  build:
+    docker:
+      - image: microsoft/dotnet:2.1.500
+    steps:
+      - checkout
+      - run: find .
+      - run: dotnet restore
+      - run: dotnet build
