@@ -4,14 +4,16 @@
         <TargetFramework>netcoreapp2.1</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="wwwroot\" />
-    </ItemGroup>
-    <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.6" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\APIGateway.Services\APIGateway.Services.csproj" />
         <ProjectReference Include="..\APIGateway.Logging\APIGateway.Logging.csproj" />
         <ProjectReference Include="..\APIGateway.Queue\APIGateway.Queue.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Pages\" />
+        <Folder Include="Pages\Models\" />
+        <Folder Include="wwwroot\" />
     </ItemGroup>
 </Project>

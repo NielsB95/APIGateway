@@ -1,0 +1,60 @@
+﻿@page
+@using APIGateway.Pages.Models
+@model IndexModel
+@{
+    Layout = "~/Pages/_layout.cshtml";
+}
+
+@foreach (var microservice in Model.Microservices.OrderBy(x => x.Name))
+{
+    <div class="card top-margin">
+        <div class="card-header">
+            @microservice.Name
+        </div>
+        <div class="card-body">
+            <table>
+                <tr>
+                    <td><b>Url:</b></td>
+                    <td>@microservice.ServiceUrl</td>
+                </tr>
+                <tr>
+                    <td><b>Port:</b></td>
+                    <td>@microservice.Port</td>
+                </tr>
+                <tr>
+                    <td><b>Version:</b></td>
+                    <td>@microservice.Version</td>
+                </tr>
+                <tr>
+                    <td><b>Prefix:</b></td>
+                    <td>@microservice.Prefix</td>
+                </tr>
+                <tr>
+                    <td><b>Endpoints:</b></td>
+                    <td>@microservice.Endpoints.Count</td>
+                </tr>
+            </table>
+
+            <table class="table top-margin">
+                <thead>
+                    <tr>
+                        <th class="text-left">Method</th>
+                        <th class="text-left">From</th>
+                        <th class="text-left">To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var endpoint in microservice.Endpoints)
+                    {
+                        <tr>
+                            <td>@endpoint.Method</td>
+                            <td>@endpoint.GatewayUrl</td>
+                            <td>@endpoint.ServiceUrl</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+

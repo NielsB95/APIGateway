@@ -43,6 +43,8 @@ namespace APIGateway
                 app.UseHsts();
             }
 
+            app.UseStaticFiles();
+
             // Register the logging of all the requests that we receive.
             app.AddRequestLogging();
 
