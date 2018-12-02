@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using APIGateway.Queue.Util;
 using APIGateway.Services.Entities;
@@ -33,6 +34,14 @@ namespace APIGateway.Queue.Entities
                 case "POST":
                     response = await RequestProcessor.POST(composedUrl, context);
                     break;
+                case "PUT":
+                    response = await RequestProcessor.PUT(composedUrl, context);
+                    break;
+                case "DELETE":
+                    response = await RequestProcessor.DELETE(composedUrl);
+                    break;
+                default:
+                    throw new ArgumentException(string.Format("Unsupported HttpMethod: {0}", this.context.Request.Method));
             }
 
             // Copy the response from the proxied request.

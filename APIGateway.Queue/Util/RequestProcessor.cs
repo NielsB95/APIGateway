@@ -25,5 +25,22 @@ namespace APIGateway.Queue.Util
 
             return response;
         }
+
+        public static async Task<HttpResponseMessage> PUT(string newUrl, HttpContext context)
+        {
+            var url = new Uri(newUrl);
+            var content = new StreamContent(context.Request.Body);
+            var response = await client.PutAsync(url, content);
+
+            return response;
+        }
+
+        public static async Task<HttpResponseMessage> DELETE(string newUrl)
+        {
+            var url = new Uri(newUrl);
+            var response = await client.DeleteAsync(url);
+
+            return response;
+        }
     }
 }
