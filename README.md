@@ -7,6 +7,6 @@ In this implementation, the API gateway takes care of service registration. More
 
 This APIGateway has been built with .Net Core 2.1.6
 
-This project was purely mentioned for learning purposes. In production you should still use something like [NGINX](https://www.nginx.com).
+This project was purely mentioned for **learning purposes**. In production you should still use something like [NGINX](https://www.nginx.com).
 
 ![API Gateway](https://drive.google.com/uc?export=view&id=15GQSh66ocxa80OKcIgFUKBxcwK9fsn-A)
